@@ -423,7 +423,7 @@ if GEOJSON_PATH.exists():
 st.sidebar.markdown("## FILTER DATA")
 
 st.sidebar.caption(
-    "Atur periode dan wilayah pengamatan."
+    "Atur wilayah dan periode pengamatan."
 )
 
 years = sorted(
@@ -434,14 +434,7 @@ districts = sorted(
     df["bps_nama_kecamatan"].dropna().unique().tolist()
 )
 
-with st.sidebar.expander("Periode Pengamatan", expanded=True):
-
-    selected_years = st.multiselect(
-        "Pilih Tahun",
-        options=years,
-        default=years,
-        key="filter_tahun"
-    )
+# 1. WILAYAH PENGAMATAN (DILETAKKAN DI ATAS)
 
 with st.sidebar.expander("Wilayah Pengamatan", expanded=True):
 
@@ -451,6 +444,19 @@ with st.sidebar.expander("Wilayah Pengamatan", expanded=True):
         default=districts,
         key="filter_kecamatan"
     )
+
+# 2. PERIODE PENGAMATAN
+
+with st.sidebar.expander("Periode Pengamatan", expanded=True):
+
+    selected_years = st.multiselect(
+        "Pilih Tahun",
+        options=years,
+        default=years,
+        key="filter_tahun"
+    )
+
+# 3. RESET FILTER
 
 if st.sidebar.button(
     "Reset Filter",
@@ -466,12 +472,16 @@ st.sidebar.caption(
     "Sumber: Dinas Kesehatan Kota Bandung melalui Galura Data Jabar"
 )
 
+# 4. VALIDASI FILTER
+
 if not selected_years or not selected_districts:
 
     st.warning(
         "Silakan pilih minimal satu tahun dan satu kecamatan."
     )
     st.stop()
+
+# 5. FILTER DATA
 
 filtered = df[
     df["tahun"].isin(selected_years)
@@ -1782,10 +1792,10 @@ import streamlit as st
 # =========================================================
 
 st.set_page_config(
-    page_title="Dashboard Hipertensi Kota Bandung",
+    page_title="SIPENA HIPERTENSI | Kota Bandung",
     page_icon="💠",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
 )
 
 BASE_DIR = Path(__file__).resolve().parent
