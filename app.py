@@ -472,10 +472,13 @@ st.sidebar.caption(
     "Sumber: Dinas Kesehatan Kota Bandung melalui Galura Data Jabar"
 )
 
-# Ilustrasi SIPENA HIPERTENSI
+# =========================================================
+# ILUSTRASI SIPENA HIPERTENSI
+# =========================================================
+
 st.sidebar.markdown("---")
 
-image_path = Path(__file__).parent / "ilustrasi_hipertensi.jpg"
+image_path = Path(__file__).parent / "assets" / "ilustrasi_hipertensi.jpg"
 
 if image_path.exists():
     st.sidebar.image(
