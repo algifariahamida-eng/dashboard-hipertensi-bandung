@@ -472,6 +472,16 @@ st.sidebar.caption(
     "Sumber: Dinas Kesehatan Kota Bandung melalui Galura Data Jabar"
 )
 
+# Ilustrasi SIPENA HIPERTENSI
+st.sidebar.markdown("---")
+
+image_path = Path(__file__).parent / "ilustrasi_hipertensi.jpg"
+
+if image_path.exists():
+    st.sidebar.image(
+        str(image_path),
+        use_container_width=True
+    )
 # 4. VALIDASI FILTER
 
 if not selected_years or not selected_districts:
